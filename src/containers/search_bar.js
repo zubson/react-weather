@@ -18,8 +18,8 @@ class SearchBar extends Component {
     }
 
     onFormSubmit(event) {
+        // prevent default page reload
         event.preventDefault();
-
         // fetch weather data
         this.props.fetchWeather(this.state.term);
         //clear search input
@@ -28,7 +28,7 @@ class SearchBar extends Component {
 
     render() {
         return (
-            <form onSubmit={this.onFormSubmit} className="input-group">
+            <form onSubmit={this.onFormSubmit} className="input-group search-bar">
                 <input type="text" className="form-control" placeholder="Get a 5 day forecast for city"
                        value={this.state.term} onChange={this.onInputChange}/>
                 <span className="input-group-btn">
@@ -41,7 +41,7 @@ class SearchBar extends Component {
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({fetchWeather}, dispatch);
+    return bindActionCreators({fetchWeather: fetchWeather}, dispatch);
 }
 
 export default connect(null, mapDispatchToProps)(SearchBar);
